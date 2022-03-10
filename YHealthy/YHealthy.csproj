@@ -60,6 +60,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YHealthyDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YHealthyDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +89,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="YHealthyDataSet.xsc">
+      <DependentUpon>YHealthyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="YHealthyDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>YHealthyDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="YHealthyDataSet.xss">
+      <DependentUpon>YHealthyDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

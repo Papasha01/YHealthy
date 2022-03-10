@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YHealthy.YHealthyDataSetTableAdapters;
 
 namespace YHealthy.Forms
 {
@@ -16,9 +17,12 @@ namespace YHealthy.Forms
         {
             InitializeComponent();
         }
+        YHealthyDataSet.UsersDataTable dbuser;
+
 
         private void SignIn_Click(object sender, EventArgs e)
         {
+
 
         }
     }
