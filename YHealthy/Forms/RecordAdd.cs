@@ -26,28 +26,44 @@ namespace YHealthy.Forms
         YHealthyDataSetTableAdapters.PatientTableAdapter PatientTableAdapter = new YHealthyDataSetTableAdapters.PatientTableAdapter();
         YHealthyDataSet.PatientDataTable dbPatient;
 
+        int idDoc, idPat;
 
         private void RecordAdd_Load(object sender, EventArgs e)
         {
             dbRecord = RecordTableAdapter.GetData();
-            
+            dbDoctors = DoctorsTableAdapter.GetData();
+            dbPatient = PatientTableAdapter.GetData();
+            dataGridViewDoc.DataSource = dbDoctors;
+            dataGridViewPat.DataSource = dbPatient;
         }
 
         private void buttonAddRecord_Click(object sender, EventArgs e)
         {
+            //dbDoctors = (YHealthyDataSet.DoctorsDataTable)dataGridViewDoc.CurrentRow.DataBoundItem;
+            //dbPatient = (YHealthyDataSet.PatientDataTable)dataGridViewPat.CurrentRow.DataBoundItem;
+            DateTime birthday = dateTimePicker1.Value;
+            RecordTableAdapter.Insert(idDoc, idPat, birthday, false);
+            MessageBox.Show("Успешно!");
         }
 
         private void textBoxDoc_TextChanged(object sender, EventArgs e)
         {
-            dbDoctors = DoctorsTableAdapter.GetData();
-            //var filter = dbDoctors.Where(x => x.patronymic.Contains(textBoxDoc.Text));
-            //listBox1.Items.Add(filter);
+            (dataGridViewDoc.DataSource as DataTable).DefaultView.RowFilter = String.Format("full_name like '*{0}*'", textBoxDoc.Text);
+        }
 
+        private void dataGridViewDoc_MouseClick(object sender, MouseEventArgs e)
+        {
+            idDoc = Convert.ToInt32(dataGridViewDoc[0, dataGridViewDoc.CurrentRow.Index].Value);
+        }
+
+        private void dataGridViewPat_MouseClick(object sender, MouseEventArgs e)
+        {
+            idPat = Convert.ToInt32(dataGridViewPat[0, dataGridViewPat.CurrentRow.Index].Value);
         }
 
         private void textBoxPat_TextChanged(object sender, EventArgs e)
         {
-
+            (dataGridViewPat.DataSource as DataTable).DefaultView.RowFilter = String.Format("full_name like '*{0}*'", textBoxPat.Text);
         }
     }
 }

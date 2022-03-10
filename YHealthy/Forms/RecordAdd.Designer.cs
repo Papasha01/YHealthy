@@ -35,13 +35,16 @@ namespace YHealthy.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDoc = new System.Windows.Forms.TextBox();
             this.textBoxPat = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.dataGridViewDoc = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPat = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPat)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonAddRecord
             // 
             this.buttonAddRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddRecord.Location = new System.Drawing.Point(813, 349);
+            this.buttonAddRecord.Location = new System.Drawing.Point(472, 349);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(117, 23);
             this.buttonAddRecord.TabIndex = 0;
@@ -78,7 +81,7 @@ namespace YHealthy.Forms
             // 
             this.textBoxDoc.Location = new System.Drawing.Point(65, 14);
             this.textBoxDoc.Name = "textBoxDoc";
-            this.textBoxDoc.Size = new System.Drawing.Size(246, 20);
+            this.textBoxDoc.Size = new System.Drawing.Size(514, 20);
             this.textBoxDoc.TabIndex = 4;
             this.textBoxDoc.TextChanged += new System.EventHandler(this.textBoxDoc_TextChanged);
             // 
@@ -86,24 +89,35 @@ namespace YHealthy.Forms
             // 
             this.textBoxPat.Location = new System.Drawing.Point(65, 158);
             this.textBoxPat.Name = "textBoxPat";
-            this.textBoxPat.Size = new System.Drawing.Size(246, 20);
+            this.textBoxPat.Size = new System.Drawing.Size(514, 20);
             this.textBoxPat.TabIndex = 4;
             this.textBoxPat.TextChanged += new System.EventHandler(this.textBoxPat_TextChanged);
             // 
-            // listBox1
+            // dataGridViewDoc
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(65, 40);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(865, 95);
-            this.listBox1.TabIndex = 5;
+            this.dataGridViewDoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDoc.Location = new System.Drawing.Point(65, 40);
+            this.dataGridViewDoc.Name = "dataGridViewDoc";
+            this.dataGridViewDoc.Size = new System.Drawing.Size(514, 111);
+            this.dataGridViewDoc.TabIndex = 5;
+            this.dataGridViewDoc.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewDoc_MouseClick);
+            // 
+            // dataGridViewPat
+            // 
+            this.dataGridViewPat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPat.Location = new System.Drawing.Point(65, 184);
+            this.dataGridViewPat.Name = "dataGridViewPat";
+            this.dataGridViewPat.Size = new System.Drawing.Size(514, 111);
+            this.dataGridViewPat.TabIndex = 5;
+            this.dataGridViewPat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewPat_MouseClick);
             // 
             // RecordAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 384);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(601, 384);
+            this.Controls.Add(this.dataGridViewPat);
+            this.Controls.Add(this.dataGridViewDoc);
             this.Controls.Add(this.textBoxPat);
             this.Controls.Add(this.textBoxDoc);
             this.Controls.Add(this.label2);
@@ -113,6 +127,8 @@ namespace YHealthy.Forms
             this.Name = "RecordAdd";
             this.Text = "RecordAdd";
             this.Load += new System.EventHandler(this.RecordAdd_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,6 +142,7 @@ namespace YHealthy.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxDoc;
         private System.Windows.Forms.TextBox textBoxPat;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.DataGridView dataGridViewDoc;
+        private System.Windows.Forms.DataGridView dataGridViewPat;
     }
 }

@@ -35,7 +35,7 @@ namespace YHealthy.Forms
 
             try
             {
-                recordTableAdapter.Insert(textBoxSurname.Text, textBoxName.Text, textBoxPatronymic.Text, cbGenders.Text, birthday, phone, TextBoxPassport.Text, TextBoxINN.Text, 0);
+                recordTableAdapter.Insert(textBoxName.Text, cbGenders.Text, birthday, phone, TextBoxPassport.Text, TextBoxINN.Text, 0);
                 
                 MessageBox.Show("Ваш профиль добавлен в систему");
             }
