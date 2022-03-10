@@ -46,17 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassTotal.cs" />
     <Compile Include="Forms\Auth.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Record_List.cs">
+    <Compile Include="Forms\Person.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Record_List.Designer.cs">
-      <DependentUpon>Record_List.cs</DependentUpon>
+    <Compile Include="Forms\Person.Designer.cs">
+      <DependentUpon>Person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RecordAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RecordAdd.Designer.cs">
+      <DependentUpon>RecordAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RecordList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RecordList.Designer.cs">
+      <DependentUpon>RecordList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +81,14 @@
     <EmbeddedResource Include="Forms\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Record_List.resx">
-      <DependentUpon>Record_List.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Person.resx">
+      <DependentUpon>Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecordAdd.resx">
+      <DependentUpon>RecordAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RecordList.resx">
+      <DependentUpon>RecordList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

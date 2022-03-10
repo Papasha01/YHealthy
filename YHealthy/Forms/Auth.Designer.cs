@@ -29,27 +29,12 @@ namespace YHealthy.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SignIn = new System.Windows.Forms.Button();
             this.TBPassword = new System.Windows.Forms.TextBox();
             this.TBEmail = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBox1.Location = new System.Drawing.Point(136, 82);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(167, 22);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "Показывать пароль";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // SignIn
             // 
@@ -59,7 +44,7 @@ namespace YHealthy.Forms
             this.SignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.SignIn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.SignIn.Location = new System.Drawing.Point(433, 121);
+            this.SignIn.Location = new System.Drawing.Point(433, 73);
             this.SignIn.Name = "SignIn";
             this.SignIn.Size = new System.Drawing.Size(122, 33);
             this.SignIn.TabIndex = 23;
@@ -70,17 +55,19 @@ namespace YHealthy.Forms
             // TBPassword
             // 
             this.TBPassword.BackColor = System.Drawing.SystemColors.Window;
-            this.TBPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TBPassword.Location = new System.Drawing.Point(136, 50);
+            this.TBPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TBPassword.Location = new System.Drawing.Point(136, 41);
             this.TBPassword.Multiline = true;
             this.TBPassword.Name = "TBPassword";
             this.TBPassword.Size = new System.Drawing.Size(419, 26);
             this.TBPassword.TabIndex = 22;
+            this.TBPassword.UseSystemPasswordChar = true;
+            this.TBPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBPassword_KeyDown);
             // 
             // TBEmail
             // 
             this.TBEmail.BackColor = System.Drawing.SystemColors.Window;
-            this.TBEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TBEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.TBEmail.Location = new System.Drawing.Point(136, 9);
             this.TBEmail.Multiline = true;
             this.TBEmail.Name = "TBEmail";
@@ -92,7 +79,7 @@ namespace YHealthy.Forms
             this.labelPassword.AutoSize = true;
             this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.labelPassword.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelPassword.Location = new System.Drawing.Point(12, 50);
+            this.labelPassword.Location = new System.Drawing.Point(12, 41);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(78, 20);
             this.labelPassword.TabIndex = 20;
@@ -109,21 +96,11 @@ namespace YHealthy.Forms
             this.labelEmail.TabIndex = 19;
             this.labelEmail.Text = "Email";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 206);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 25;
-            // 
             // Auth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(594, 134);
             this.Controls.Add(this.SignIn);
             this.Controls.Add(this.TBPassword);
             this.Controls.Add(this.TBEmail);
@@ -131,20 +108,16 @@ namespace YHealthy.Forms
             this.Controls.Add(this.labelEmail);
             this.Name = "Auth";
             this.Text = "Auth";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button SignIn;
         private System.Windows.Forms.TextBox TBPassword;
         private System.Windows.Forms.TextBox TBEmail;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

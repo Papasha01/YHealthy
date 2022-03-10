@@ -827,6 +827,16 @@ namespace YHealthy {
             
             private global::System.Data.DataColumn columnpatronymic;
             
+            private global::System.Data.DataColumn columngender;
+            
+            private global::System.Data.DataColumn columnbirthday;
+            
+            private global::System.Data.DataColumn columnphone;
+            
+            private global::System.Data.DataColumn columnpassport_ser_num;
+            
+            private global::System.Data.DataColumn columninn;
+            
             private global::System.Data.DataColumn columncash;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -896,6 +906,46 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn genderColumn {
+                get {
+                    return this.columngender;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn birthdayColumn {
+                get {
+                    return this.columnbirthday;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn phoneColumn {
+                get {
+                    return this.columnphone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn passport_ser_numColumn {
+                get {
+                    return this.columnpassport_ser_num;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn innColumn {
+                get {
+                    return this.columninn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn cashColumn {
                 get {
                     return this.columncash;
@@ -939,13 +989,18 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PatientRow AddPatientRow(string surname, string name, string patronymic, int cash) {
+            public PatientRow AddPatientRow(string surname, string name, string patronymic, string gender, System.DateTime birthday, string phone, string passport_ser_num, string inn, int cash) {
                 PatientRow rowPatientRow = ((PatientRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         surname,
                         name,
                         patronymic,
+                        gender,
+                        birthday,
+                        phone,
+                        passport_ser_num,
+                        inn,
                         cash};
                 rowPatientRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPatientRow);
@@ -980,6 +1035,11 @@ namespace YHealthy {
                 this.columnsurname = base.Columns["surname"];
                 this.columnname = base.Columns["name"];
                 this.columnpatronymic = base.Columns["patronymic"];
+                this.columngender = base.Columns["gender"];
+                this.columnbirthday = base.Columns["birthday"];
+                this.columnphone = base.Columns["phone"];
+                this.columnpassport_ser_num = base.Columns["passport_ser_num"];
+                this.columninn = base.Columns["inn"];
                 this.columncash = base.Columns["cash"];
             }
             
@@ -994,6 +1054,16 @@ namespace YHealthy {
                 base.Columns.Add(this.columnname);
                 this.columnpatronymic = new global::System.Data.DataColumn("patronymic", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpatronymic);
+                this.columngender = new global::System.Data.DataColumn("gender", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngender);
+                this.columnbirthday = new global::System.Data.DataColumn("birthday", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbirthday);
+                this.columnphone = new global::System.Data.DataColumn("phone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnphone);
+                this.columnpassport_ser_num = new global::System.Data.DataColumn("passport_ser_num", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpassport_ser_num);
+                this.columninn = new global::System.Data.DataColumn("inn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columninn);
                 this.columncash = new global::System.Data.DataColumn("cash", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncash);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1010,6 +1080,13 @@ namespace YHealthy {
                 this.columnname.MaxLength = 50;
                 this.columnpatronymic.AllowDBNull = false;
                 this.columnpatronymic.MaxLength = 50;
+                this.columngender.MaxLength = 1;
+                this.columnbirthday.AllowDBNull = false;
+                this.columnphone.MaxLength = 11;
+                this.columnpassport_ser_num.AllowDBNull = false;
+                this.columnpassport_ser_num.MaxLength = 10;
+                this.columninn.AllowDBNull = false;
+                this.columninn.MaxLength = 12;
                 this.columncash.AllowDBNull = false;
             }
             
@@ -2248,6 +2325,71 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string gender {
+                get {
+                    try {
+                        return ((string)(this[this.tablePatient.genderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'gender\' в таблице \'Patient\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePatient.genderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime birthday {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePatient.birthdayColumn]));
+                }
+                set {
+                    this[this.tablePatient.birthdayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string phone {
+                get {
+                    try {
+                        return ((string)(this[this.tablePatient.phoneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'phone\' в таблице \'Patient\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePatient.phoneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string passport_ser_num {
+                get {
+                    return ((string)(this[this.tablePatient.passport_ser_numColumn]));
+                }
+                set {
+                    this[this.tablePatient.passport_ser_numColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string inn {
+                get {
+                    return ((string)(this[this.tablePatient.innColumn]));
+                }
+                set {
+                    this[this.tablePatient.innColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int cash {
                 get {
                     return ((int)(this[this.tablePatient.cashColumn]));
@@ -2255,6 +2397,30 @@ namespace YHealthy {
                 set {
                     this[this.tablePatient.cashColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsgenderNull() {
+                return this.IsNull(this.tablePatient.genderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetgenderNull() {
+                this[this.tablePatient.genderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsphoneNull() {
+                return this.IsNull(this.tablePatient.phoneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetphoneNull() {
+                this[this.tablePatient.phoneColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3237,42 +3403,68 @@ SELECT id, surname, name, patronymic, position, id_working_days, id_working_time
             tableMapping.ColumnMappings.Add("surname", "surname");
             tableMapping.ColumnMappings.Add("name", "name");
             tableMapping.ColumnMappings.Add("patronymic", "patronymic");
+            tableMapping.ColumnMappings.Add("gender", "gender");
+            tableMapping.ColumnMappings.Add("birthday", "birthday");
+            tableMapping.ColumnMappings.Add("phone", "phone");
+            tableMapping.ColumnMappings.Add("passport_ser_num", "passport_ser_num");
+            tableMapping.ColumnMappings.Add("inn", "inn");
             tableMapping.ColumnMappings.Add("cash", "cash");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Patient] WHERE (([id] = @Original_id) AND ([surname] = @Origin" +
-                "al_surname) AND ([name] = @Original_name) AND ([patronymic] = @Original_patronym" +
-                "ic) AND ([cash] = @Original_cash))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Patient] WHERE (([id] = @Original_id) AND ([surname] = @Original_surname) AND ([name] = @Original_name) AND ([patronymic] = @Original_patronymic) AND ((@IsNull_gender = 1 AND [gender] IS NULL) OR ([gender] = @Original_gender)) AND ([birthday] = @Original_birthday) AND ((@IsNull_phone = 1 AND [phone] IS NULL) OR ([phone] = @Original_phone)) AND ([passport_ser_num] = @Original_passport_ser_num) AND ([inn] = @Original_inn) AND ([cash] = @Original_cash))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_surname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "surname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_patronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "patronymic", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_phone", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_passport_ser_num", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "passport_ser_num", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_inn", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "inn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Patient] ([surname], [name], [patronymic], [cash]) VALUES (@su" +
-                "rname, @name, @patronymic, @cash);\r\nSELECT id, surname, name, patronymic, cash F" +
-                "ROM Patient WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Patient] ([surname], [name], [patronymic], [gender], [birthday], [phone], [passport_ser_num], [inn], [cash]) VALUES (@surname, @name, @patronymic, @gender, @birthday, @phone, @passport_ser_num, @inn, @cash);
+SELECT id, surname, name, patronymic, gender, birthday, phone, passport_ser_num, inn, cash FROM Patient WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@surname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "surname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@patronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "patronymic", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@passport_ser_num", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "passport_ser_num", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inn", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "inn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Patient] SET [surname] = @surname, [name] = @name, [patronymic] = @patronymic, [cash] = @cash WHERE (([id] = @Original_id) AND ([surname] = @Original_surname) AND ([name] = @Original_name) AND ([patronymic] = @Original_patronymic) AND ([cash] = @Original_cash));
-SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Patient] SET [surname] = @surname, [name] = @name, [patronymic] = @patronymic, [gender] = @gender, [birthday] = @birthday, [phone] = @phone, [passport_ser_num] = @passport_ser_num, [inn] = @inn, [cash] = @cash WHERE (([id] = @Original_id) AND ([surname] = @Original_surname) AND ([name] = @Original_name) AND ([patronymic] = @Original_patronymic) AND ((@IsNull_gender = 1 AND [gender] IS NULL) OR ([gender] = @Original_gender)) AND ([birthday] = @Original_birthday) AND ((@IsNull_phone = 1 AND [phone] IS NULL) OR ([phone] = @Original_phone)) AND ([passport_ser_num] = @Original_passport_ser_num) AND ([inn] = @Original_inn) AND ([cash] = @Original_cash));
+SELECT id, surname, name, patronymic, gender, birthday, phone, passport_ser_num, inn, cash FROM Patient WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@surname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "surname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@patronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "patronymic", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@passport_ser_num", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "passport_ser_num", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inn", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "inn", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_surname", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "surname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_patronymic", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "patronymic", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_phone", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_passport_ser_num", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "passport_ser_num", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_inn", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "inn", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -3290,7 +3482,8 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, surname, name, patronymic, cash FROM dbo.Patient";
+            this._commandCollection[0].CommandText = "SELECT id, surname, name, patronymic, gender, birthday, phone, passport_ser_num, " +
+                "inn, cash FROM dbo.Patient";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3351,7 +3544,7 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_surname, string Original_name, string Original_patronymic, int Original_cash) {
+        public virtual int Delete(int Original_id, string Original_surname, string Original_name, string Original_patronymic, string Original_gender, System.DateTime Original_birthday, string Original_phone, string Original_passport_ser_num, string Original_inn, int Original_cash) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_surname == null)) {
                 throw new global::System.ArgumentNullException("Original_surname");
@@ -3371,7 +3564,36 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_patronymic));
             }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_cash));
+            if ((Original_gender == null)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_gender));
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_birthday));
+            if ((Original_phone == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_phone));
+            }
+            if ((Original_passport_ser_num == null)) {
+                throw new global::System.ArgumentNullException("Original_passport_ser_num");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_passport_ser_num));
+            }
+            if ((Original_inn == null)) {
+                throw new global::System.ArgumentNullException("Original_inn");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_inn));
+            }
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_cash));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3392,7 +3614,7 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string surname, string name, string patronymic, int cash) {
+        public virtual int Insert(string surname, string name, string patronymic, string gender, System.DateTime birthday, string phone, string passport_ser_num, string inn, int cash) {
             if ((surname == null)) {
                 throw new global::System.ArgumentNullException("surname");
             }
@@ -3411,7 +3633,32 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(patronymic));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(cash));
+            if ((gender == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(gender));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(birthday));
+            if ((phone == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(phone));
+            }
+            if ((passport_ser_num == null)) {
+                throw new global::System.ArgumentNullException("passport_ser_num");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(passport_ser_num));
+            }
+            if ((inn == null)) {
+                throw new global::System.ArgumentNullException("inn");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(inn));
+            }
+            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(cash));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3432,7 +3679,27 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string surname, string name, string patronymic, int cash, int Original_id, string Original_surname, string Original_name, string Original_patronymic, int Original_cash, int id) {
+        public virtual int Update(
+                    string surname, 
+                    string name, 
+                    string patronymic, 
+                    string gender, 
+                    System.DateTime birthday, 
+                    string phone, 
+                    string passport_ser_num, 
+                    string inn, 
+                    int cash, 
+                    int Original_id, 
+                    string Original_surname, 
+                    string Original_name, 
+                    string Original_patronymic, 
+                    string Original_gender, 
+                    System.DateTime Original_birthday, 
+                    string Original_phone, 
+                    string Original_passport_ser_num, 
+                    string Original_inn, 
+                    int Original_cash, 
+                    int id) {
             if ((surname == null)) {
                 throw new global::System.ArgumentNullException("surname");
             }
@@ -3451,28 +3718,82 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(patronymic));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(cash));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id));
+            if ((gender == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(gender));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(birthday));
+            if ((phone == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(phone));
+            }
+            if ((passport_ser_num == null)) {
+                throw new global::System.ArgumentNullException("passport_ser_num");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(passport_ser_num));
+            }
+            if ((inn == null)) {
+                throw new global::System.ArgumentNullException("inn");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(inn));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(cash));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_id));
             if ((Original_surname == null)) {
                 throw new global::System.ArgumentNullException("Original_surname");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_surname));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_surname));
             }
             if ((Original_name == null)) {
                 throw new global::System.ArgumentNullException("Original_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_name));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_name));
             }
             if ((Original_patronymic == null)) {
                 throw new global::System.ArgumentNullException("Original_patronymic");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_patronymic));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_patronymic));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_cash));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(id));
+            if ((Original_gender == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_gender));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_birthday));
+            if ((Original_phone == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_phone));
+            }
+            if ((Original_passport_ser_num == null)) {
+                throw new global::System.ArgumentNullException("Original_passport_ser_num");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_passport_ser_num));
+            }
+            if ((Original_inn == null)) {
+                throw new global::System.ArgumentNullException("Original_inn");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_inn));
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_cash));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3493,8 +3814,27 @@ SELECT id, surname, name, patronymic, cash FROM Patient WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string surname, string name, string patronymic, int cash, int Original_id, string Original_surname, string Original_name, string Original_patronymic, int Original_cash) {
-            return this.Update(surname, name, patronymic, cash, Original_id, Original_surname, Original_name, Original_patronymic, Original_cash, Original_id);
+        public virtual int Update(
+                    string surname, 
+                    string name, 
+                    string patronymic, 
+                    string gender, 
+                    System.DateTime birthday, 
+                    string phone, 
+                    string passport_ser_num, 
+                    string inn, 
+                    int cash, 
+                    int Original_id, 
+                    string Original_surname, 
+                    string Original_name, 
+                    string Original_patronymic, 
+                    string Original_gender, 
+                    System.DateTime Original_birthday, 
+                    string Original_phone, 
+                    string Original_passport_ser_num, 
+                    string Original_inn, 
+                    int Original_cash) {
+            return this.Update(surname, name, patronymic, gender, birthday, phone, passport_ser_num, inn, cash, Original_id, Original_surname, Original_name, Original_patronymic, Original_gender, Original_birthday, Original_phone, Original_passport_ser_num, Original_inn, Original_cash, Original_id);
         }
     }
     
