@@ -48,19 +48,19 @@ namespace YHealthy.Forms
                 switch (ClassTotal.idRole)
                 {
                     case 1:     //admin
-                        RecordList rl1 = new RecordList();
+                        Menu rl1 = new Menu();
                         Hide();
                         rl1.ShowDialog();
                         Show();
                         break;
                     case 2:     //doc
-                        RecordList rl2 = new RecordList();
+                        Menu rl2 = new Menu();
                         Hide();
                         rl2.ShowDialog();
                         Show();
                         break;
                     case 3:     //pac
-                        RecordList rl3 = new RecordList();
+                        Menu rl3 = new Menu();
                         Hide();
                         rl3.ShowDialog();
                         Show();

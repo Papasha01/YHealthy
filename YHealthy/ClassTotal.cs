@@ -8,8 +8,8 @@ namespace YHealthy
 {
     class ClassTotal
     {
-        public static int idUser;
-        public static int idRole;
+        public static int idUser, idRole, id_pac, id_doc;
         public static string login;
+        public static DateTime dateRecord;
     }
 }

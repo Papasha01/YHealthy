@@ -35,6 +35,9 @@ namespace YHealthy.Forms
             dbPatient = PatientTableAdapter.GetData();
             dataGridViewDoc.DataSource = dbDoctors;
             dataGridViewPat.DataSource = dbPatient;
+
+            idDoc = 1;
+            idPat = 1;
         }
 
         private void buttonAddRecord_Click(object sender, EventArgs e)
@@ -44,6 +47,7 @@ namespace YHealthy.Forms
             DateTime birthday = dateTimePicker1.Value;
             RecordTableAdapter.Insert(idDoc, idPat, birthday, false);
             MessageBox.Show("Успешно!");
+            this.Close();
         }
 
         private void textBoxDoc_TextChanged(object sender, EventArgs e)

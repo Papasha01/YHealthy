@@ -61,6 +61,7 @@ namespace YHealthy.Forms
             this.TBPassword.Name = "TBPassword";
             this.TBPassword.Size = new System.Drawing.Size(419, 26);
             this.TBPassword.TabIndex = 22;
+            this.TBPassword.Text = "123";
             this.TBPassword.UseSystemPasswordChar = true;
             this.TBPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBPassword_KeyDown);
             // 
@@ -73,6 +74,7 @@ namespace YHealthy.Forms
             this.TBEmail.Name = "TBEmail";
             this.TBEmail.Size = new System.Drawing.Size(419, 26);
             this.TBEmail.TabIndex = 21;
+            this.TBEmail.Text = "papasha";
             // 
             // labelPassword
             // 

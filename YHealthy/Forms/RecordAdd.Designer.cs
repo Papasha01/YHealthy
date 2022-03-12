@@ -44,7 +44,7 @@ namespace YHealthy.Forms
             // buttonAddRecord
             // 
             this.buttonAddRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddRecord.Location = new System.Drawing.Point(472, 349);
+            this.buttonAddRecord.Location = new System.Drawing.Point(472, 317);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(117, 23);
             this.buttonAddRecord.TabIndex = 0;
@@ -115,7 +115,7 @@ namespace YHealthy.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 384);
+            this.ClientSize = new System.Drawing.Size(601, 352);
             this.Controls.Add(this.dataGridViewPat);
             this.Controls.Add(this.dataGridViewDoc);
             this.Controls.Add(this.textBoxPat);

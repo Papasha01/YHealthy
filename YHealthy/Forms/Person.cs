@@ -27,15 +27,11 @@ namespace YHealthy.Forms
 
         private void Create()
         {
-            string runnerName = textBoxName.Text;
-            string runnerLastname = textBoxSurname.Text;
-            string idGender = cbGenders.Text;
             DateTime birthday = dtPickerBirthday.Value;
-            string phone = textBoxPhone.Text;
 
             try
             {
-                recordTableAdapter.Insert(textBoxName.Text, cbGenders.Text, birthday, phone, TextBoxPassport.Text, TextBoxINN.Text, 0);
+                recordTableAdapter.Insert(textBoxName.Text, cbGenders.Text, birthday, textBoxPhone.Text, TextBoxPassport.Text, TextBoxINN.Text, 0);
                 
                 MessageBox.Show("Ваш профиль добавлен в систему");
             }

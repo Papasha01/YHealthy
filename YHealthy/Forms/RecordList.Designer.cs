@@ -32,7 +32,6 @@ namespace YHealthy.Forms
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonAddPatient = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
-            this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAddRecord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -44,10 +43,11 @@ namespace YHealthy.Forms
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(904, 415);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // buttonAddPatient
             // 
-            this.buttonAddPatient.Location = new System.Drawing.Point(475, 434);
+            this.buttonAddPatient.Location = new System.Drawing.Point(587, 434);
             this.buttonAddPatient.Name = "buttonAddPatient";
             this.buttonAddPatient.Size = new System.Drawing.Size(106, 50);
             this.buttonAddPatient.TabIndex = 1;
@@ -63,19 +63,11 @@ namespace YHealthy.Forms
             this.buttonDel.TabIndex = 1;
             this.buttonDel.Text = "Удалить запись";
             this.buttonDel.UseVisualStyleBackColor = true;
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Location = new System.Drawing.Point(699, 434);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(106, 50);
-            this.buttonEdit.TabIndex = 1;
-            this.buttonEdit.Text = "Редактировать запись";
-            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonAddRecord
             // 
-            this.buttonAddRecord.Location = new System.Drawing.Point(587, 434);
+            this.buttonAddRecord.Location = new System.Drawing.Point(699, 434);
             this.buttonAddRecord.Name = "buttonAddRecord";
             this.buttonAddRecord.Size = new System.Drawing.Size(106, 50);
             this.buttonAddRecord.TabIndex = 1;
@@ -83,19 +75,19 @@ namespace YHealthy.Forms
             this.buttonAddRecord.UseVisualStyleBackColor = true;
             this.buttonAddRecord.Click += new System.EventHandler(this.buttonAddRecord_Click);
             // 
-            // Record_List
+            // RecordList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 496);
-            this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonAddRecord);
             this.Controls.Add(this.buttonAddPatient);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Record_List";
+            this.Name = "RecordList";
             this.Text = "Record_List";
             this.Load += new System.EventHandler(this.Record_List_Load);
+            this.VisibleChanged += new System.EventHandler(this.RecordList_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -106,7 +98,6 @@ namespace YHealthy.Forms
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonAddPatient;
         private System.Windows.Forms.Button buttonDel;
-        private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonAddRecord;
     }
 }

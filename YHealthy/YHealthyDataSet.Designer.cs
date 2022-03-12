@@ -423,17 +423,17 @@ namespace YHealthy {
             
             private global::System.Data.DataColumn columnfull_name;
             
+            private global::System.Data.DataColumn columngender;
+            
+            private global::System.Data.DataColumn columnbirthday;
+            
             private global::System.Data.DataColumn columnposition;
             
-            private global::System.Data.DataColumn columnid_working_days;
-            
-            private global::System.Data.DataColumn columnid_working_time;
+            private global::System.Data.DataColumn columnphone;
             
             private global::System.Data.DataColumn columnprice;
             
             private global::System.Data.DataColumn columncash;
-            
-            private global::System.Data.DataColumn columnid_time_for_admission;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -486,6 +486,22 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn genderColumn {
+                get {
+                    return this.columngender;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn birthdayColumn {
+                get {
+                    return this.columnbirthday;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn positionColumn {
                 get {
                     return this.columnposition;
@@ -494,17 +510,9 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_working_daysColumn {
+            public global::System.Data.DataColumn phoneColumn {
                 get {
-                    return this.columnid_working_days;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_working_timeColumn {
-                get {
-                    return this.columnid_working_time;
+                    return this.columnphone;
                 }
             }
             
@@ -521,14 +529,6 @@ namespace YHealthy {
             public global::System.Data.DataColumn cashColumn {
                 get {
                     return this.columncash;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn id_time_for_admissionColumn {
-                get {
-                    return this.columnid_time_for_admission;
                 }
             }
             
@@ -569,17 +569,17 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DoctorsRow AddDoctorsRow(string full_name, string position, int id_working_days, int id_working_time, int price, int cash, int id_time_for_admission) {
+            public DoctorsRow AddDoctorsRow(string full_name, string gender, System.DateTime birthday, string position, string phone, int price, int cash) {
                 DoctorsRow rowDoctorsRow = ((DoctorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         full_name,
+                        gender,
+                        birthday,
                         position,
-                        id_working_days,
-                        id_working_time,
+                        phone,
                         price,
-                        cash,
-                        id_time_for_admission};
+                        cash};
                 rowDoctorsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDoctorsRow);
                 return rowDoctorsRow;
@@ -611,12 +611,12 @@ namespace YHealthy {
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
                 this.columnfull_name = base.Columns["full_name"];
+                this.columngender = base.Columns["gender"];
+                this.columnbirthday = base.Columns["birthday"];
                 this.columnposition = base.Columns["position"];
-                this.columnid_working_days = base.Columns["id_working_days"];
-                this.columnid_working_time = base.Columns["id_working_time"];
+                this.columnphone = base.Columns["phone"];
                 this.columnprice = base.Columns["price"];
                 this.columncash = base.Columns["cash"];
-                this.columnid_time_for_admission = base.Columns["id_time_for_admission"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -626,18 +626,18 @@ namespace YHealthy {
                 base.Columns.Add(this.columnid);
                 this.columnfull_name = new global::System.Data.DataColumn("full_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfull_name);
+                this.columngender = new global::System.Data.DataColumn("gender", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngender);
+                this.columnbirthday = new global::System.Data.DataColumn("birthday", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbirthday);
                 this.columnposition = new global::System.Data.DataColumn("position", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnposition);
-                this.columnid_working_days = new global::System.Data.DataColumn("id_working_days", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_working_days);
-                this.columnid_working_time = new global::System.Data.DataColumn("id_working_time", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_working_time);
+                this.columnphone = new global::System.Data.DataColumn("phone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnphone);
                 this.columnprice = new global::System.Data.DataColumn("price", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprice);
                 this.columncash = new global::System.Data.DataColumn("cash", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncash);
-                this.columnid_time_for_admission = new global::System.Data.DataColumn("id_time_for_admission", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid_time_for_admission);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -646,11 +646,14 @@ namespace YHealthy {
                 this.columnid.AllowDBNull = false;
                 this.columnid.ReadOnly = true;
                 this.columnid.Unique = true;
+                this.columnfull_name.AllowDBNull = false;
                 this.columnfull_name.MaxLength = 50;
+                this.columngender.AllowDBNull = false;
+                this.columngender.MaxLength = 1;
                 this.columnposition.AllowDBNull = false;
                 this.columnposition.MaxLength = 50;
-                this.columnid_working_days.AllowDBNull = false;
-                this.columnid_working_time.AllowDBNull = false;
+                this.columnphone.AllowDBNull = false;
+                this.columnphone.MaxLength = 11;
                 this.columnprice.AllowDBNull = false;
                 this.columncash.AllowDBNull = false;
             }
@@ -2089,15 +2092,37 @@ namespace YHealthy {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string full_name {
                 get {
-                    try {
-                        return ((string)(this[this.tableDoctors.full_nameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'full_name\' в таблице \'Doctors\' равно DBNull.", e);
-                    }
+                    return ((string)(this[this.tableDoctors.full_nameColumn]));
                 }
                 set {
                     this[this.tableDoctors.full_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string gender {
+                get {
+                    return ((string)(this[this.tableDoctors.genderColumn]));
+                }
+                set {
+                    this[this.tableDoctors.genderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime birthday {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDoctors.birthdayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'birthday\' в таблице \'Doctors\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDoctors.birthdayColumn] = value;
                 }
             }
             
@@ -2114,23 +2139,12 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_working_days {
+            public string phone {
                 get {
-                    return ((int)(this[this.tableDoctors.id_working_daysColumn]));
+                    return ((string)(this[this.tableDoctors.phoneColumn]));
                 }
                 set {
-                    this[this.tableDoctors.id_working_daysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_working_time {
-                get {
-                    return ((int)(this[this.tableDoctors.id_working_timeColumn]));
-                }
-                set {
-                    this[this.tableDoctors.id_working_timeColumn] = value;
+                    this[this.tableDoctors.phoneColumn] = value;
                 }
             }
             
@@ -2158,42 +2172,14 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int id_time_for_admission {
-                get {
-                    try {
-                        return ((int)(this[this.tableDoctors.id_time_for_admissionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'id_time_for_admission\' в таблице \'Doctors\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDoctors.id_time_for_admissionColumn] = value;
-                }
+            public bool IsbirthdayNull() {
+                return this.IsNull(this.tableDoctors.birthdayColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isfull_nameNull() {
-                return this.IsNull(this.tableDoctors.full_nameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setfull_nameNull() {
-                this[this.tableDoctors.full_nameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isid_time_for_admissionNull() {
-                return this.IsNull(this.tableDoctors.id_time_for_admissionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setid_time_for_admissionNull() {
-                this[this.tableDoctors.id_time_for_admissionColumn] = global::System.Convert.DBNull;
+            public void SetbirthdayNull() {
+                this[this.tableDoctors.birthdayColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2763,61 +2749,59 @@ namespace YHealthy.YHealthyDataSetTableAdapters {
             tableMapping.DataSetTable = "Doctors";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("full_name", "full_name");
+            tableMapping.ColumnMappings.Add("gender", "gender");
+            tableMapping.ColumnMappings.Add("birthday", "birthday");
             tableMapping.ColumnMappings.Add("position", "position");
-            tableMapping.ColumnMappings.Add("id_working_days", "id_working_days");
-            tableMapping.ColumnMappings.Add("id_working_time", "id_working_time");
+            tableMapping.ColumnMappings.Add("phone", "phone");
             tableMapping.ColumnMappings.Add("price", "price");
             tableMapping.ColumnMappings.Add("cash", "cash");
-            tableMapping.ColumnMappings.Add("id_time_for_admission", "id_time_for_admission");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Doctors] WHERE (([id] = @Original_id) AND ((@IsNull_full_name = 1 AND [full_name] IS NULL) OR ([full_name] = @Original_full_name)) AND ([position] = @Original_position) AND ([id_working_days] = @Original_id_working_days) AND ([id_working_time] = @Original_id_working_time) AND ([price] = @Original_price) AND ([cash] = @Original_cash) AND ((@IsNull_id_time_for_admission = 1 AND [id_time_for_admission] IS NULL) OR ([id_time_for_admission] = @Original_id_time_for_admission)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Doctors] WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_full_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_birthday", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_position", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_working_days", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_days", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_working_time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Doctors] ([full_name], [position], [id_working_days], [id_working_time], [price], [cash], [id_time_for_admission]) VALUES (@full_name, @position, @id_working_days, @id_working_time, @price, @cash, @id_time_for_admission);
-SELECT id, full_name, position, id_working_days, id_working_time, price, cash, id_time_for_admission FROM Doctors WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Doctors] ([full_name], [gender], [birthday], [position], [phone], [price], [cash]) VALUES (@full_name, @gender, @birthday, @position, @phone, @price, @cash);
+SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctors WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@position", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_working_days", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_days", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_working_time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Doctors] SET [full_name] = @full_name, [position] = @position, [id_working_days] = @id_working_days, [id_working_time] = @id_working_time, [price] = @price, [cash] = @cash, [id_time_for_admission] = @id_time_for_admission WHERE (([id] = @Original_id) AND ((@IsNull_full_name = 1 AND [full_name] IS NULL) OR ([full_name] = @Original_full_name)) AND ([position] = @Original_position) AND ([id_working_days] = @Original_id_working_days) AND ([id_working_time] = @Original_id_working_time) AND ([price] = @Original_price) AND ([cash] = @Original_cash) AND ((@IsNull_id_time_for_admission = 1 AND [id_time_for_admission] IS NULL) OR ([id_time_for_admission] = @Original_id_time_for_admission)));
-SELECT id, full_name, position, id_working_days, id_working_time, price, cash, id_time_for_admission FROM Doctors WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Doctors] SET [full_name] = @full_name, [gender] = @gender, [birthday] = @birthday, [position] = @position, [phone] = @phone, [price] = @price, [cash] = @cash WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash));
+SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctors WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@position", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_working_days", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_days", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_working_time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_full_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_birthday", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_birthday", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_position", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_working_days", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_days", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_working_time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_working_time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_time_for_admission", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_time_for_admission", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2834,8 +2818,8 @@ SELECT id, full_name, position, id_working_days, id_working_time, price, cash, i
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, full_name, position, id_working_days, id_working_time, price, cash, id" +
-                "_time_for_admission FROM dbo.Doctors";
+            this._commandCollection[0].CommandText = "SELECT id, full_name, gender, birthday, position, phone, price, cash FROM dbo.Doc" +
+                "tors";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2896,34 +2880,42 @@ SELECT id, full_name, position, id_working_days, id_working_time, price, cash, i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_full_name, string Original_position, int Original_id_working_days, int Original_id_working_time, int Original_price, int Original_cash, global::System.Nullable<int> Original_id_time_for_admission) {
+        public virtual int Delete(int Original_id, string Original_full_name, string Original_gender, global::System.Nullable<global::System.DateTime> Original_birthday, string Original_position, string Original_phone, int Original_price, int Original_cash) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_full_name == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_full_name");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_full_name));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_full_name));
+            }
+            if ((Original_gender == null)) {
+                throw new global::System.ArgumentNullException("Original_gender");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_gender));
+            }
+            if ((Original_birthday.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_birthday.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             if ((Original_position == null)) {
                 throw new global::System.ArgumentNullException("Original_position");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_position));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_position));
             }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_id_working_days));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_id_working_time));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_price));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_cash));
-            if ((Original_id_time_for_admission.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_id_time_for_admission.Value));
+            if ((Original_phone == null)) {
+                throw new global::System.ArgumentNullException("Original_phone");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_phone));
             }
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_price));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_cash));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2944,29 +2936,39 @@ SELECT id, full_name, position, id_working_days, id_working_time, price, cash, i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string full_name, string position, int id_working_days, int id_working_time, int price, int cash, global::System.Nullable<int> id_time_for_admission) {
+        public virtual int Insert(string full_name, string gender, global::System.Nullable<global::System.DateTime> birthday, string position, string phone, int price, int cash) {
             if ((full_name == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("full_name");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(full_name));
+            }
+            if ((gender == null)) {
+                throw new global::System.ArgumentNullException("gender");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(gender));
+            }
+            if ((birthday.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(birthday.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((position == null)) {
                 throw new global::System.ArgumentNullException("position");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(position));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(position));
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(id_working_days));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(id_working_time));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(price));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(cash));
-            if ((id_time_for_admission.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(id_time_for_admission.Value));
+            if ((phone == null)) {
+                throw new global::System.ArgumentNullException("phone");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(phone));
             }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(price));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(cash));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2989,71 +2991,89 @@ SELECT id, full_name, position, id_working_days, id_working_time, price, cash, i
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string full_name, 
+                    string gender, 
+                    global::System.Nullable<global::System.DateTime> birthday, 
                     string position, 
-                    int id_working_days, 
-                    int id_working_time, 
+                    string phone, 
                     int price, 
                     int cash, 
-                    global::System.Nullable<int> id_time_for_admission, 
                     int Original_id, 
                     string Original_full_name, 
+                    string Original_gender, 
+                    global::System.Nullable<global::System.DateTime> Original_birthday, 
                     string Original_position, 
-                    int Original_id_working_days, 
-                    int Original_id_working_time, 
+                    string Original_phone, 
                     int Original_price, 
                     int Original_cash, 
-                    global::System.Nullable<int> Original_id_time_for_admission, 
                     int id) {
             if ((full_name == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("full_name");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(full_name));
+            }
+            if ((gender == null)) {
+                throw new global::System.ArgumentNullException("gender");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(gender));
+            }
+            if ((birthday.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(birthday.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((position == null)) {
                 throw new global::System.ArgumentNullException("position");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(position));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(position));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(id_working_days));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(id_working_time));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(price));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(cash));
-            if ((id_time_for_admission.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(id_time_for_admission.Value));
+            if ((phone == null)) {
+                throw new global::System.ArgumentNullException("phone");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(phone));
             }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(price));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(cash));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id));
             if ((Original_full_name == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_full_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_full_name));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_full_name));
+            }
+            if ((Original_gender == null)) {
+                throw new global::System.ArgumentNullException("Original_gender");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_gender));
+            }
+            if ((Original_birthday.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_birthday.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             if ((Original_position == null)) {
                 throw new global::System.ArgumentNullException("Original_position");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_position));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_position));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_id_working_days));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_id_working_time));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_price));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_cash));
-            if ((Original_id_time_for_admission.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_id_time_for_admission.Value));
+            if ((Original_phone == null)) {
+                throw new global::System.ArgumentNullException("Original_phone");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_phone));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_price));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_cash));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3074,8 +3094,8 @@ SELECT id, full_name, position, id_working_days, id_working_time, price, cash, i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string full_name, string position, int id_working_days, int id_working_time, int price, int cash, global::System.Nullable<int> id_time_for_admission, int Original_id, string Original_full_name, string Original_position, int Original_id_working_days, int Original_id_working_time, int Original_price, int Original_cash, global::System.Nullable<int> Original_id_time_for_admission) {
-            return this.Update(full_name, position, id_working_days, id_working_time, price, cash, id_time_for_admission, Original_id, Original_full_name, Original_position, Original_id_working_days, Original_id_working_time, Original_price, Original_cash, Original_id_time_for_admission, Original_id);
+        public virtual int Update(string full_name, string gender, global::System.Nullable<global::System.DateTime> birthday, string position, string phone, int price, int cash, int Original_id, string Original_full_name, string Original_gender, global::System.Nullable<global::System.DateTime> Original_birthday, string Original_position, string Original_phone, int Original_price, int Original_cash) {
+            return this.Update(full_name, gender, birthday, position, phone, price, cash, Original_id, Original_full_name, Original_gender, Original_birthday, Original_position, Original_phone, Original_price, Original_cash, Original_id);
         }
     }
     
