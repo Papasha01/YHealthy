@@ -45,7 +45,6 @@ namespace YHealthy.Forms
                     groupBoxPat.Visible = true;
                 }
             }
-
             else
                 buttonSave.Visible = false;
 
