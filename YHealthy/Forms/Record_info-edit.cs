@@ -198,7 +198,23 @@ namespace YHealthy.Forms
 
         private void EditDoc()
         {
+            try
+            {
+                doctorsRow.full_name = txFioDoc.Text;
+                doctorsRow.gender = txGenderDoc.Text;
+                doctorsRow.birthday = dateTimePickerDoc.Value;
+                doctorsRow.phone = txPhonePat.Text;
+                doctorsRow.position = txPositionDoc.Text;
+                doctorsRow.price = Convert.ToInt32(txPriceDoc.Text);
+                doctorsRow.cash = Convert.ToInt32(txCashDoc.Text);
 
+                doctorsTableAdapter.Update(doctorsRow);
+                MessageBox.Show("Ваш профиль добавлен в систему");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка при обновлении профиля \n" + e);
+            }
         }
 
         private void UploadInfoDoc()
