@@ -124,7 +124,6 @@ namespace YHealthy.Forms
 
         private void CreateDoc()
         {
-            DateTime birthdayDoc = dateTimePickerDoc.Value;
 
             try
             {
@@ -135,7 +134,7 @@ namespace YHealthy.Forms
                 doctorsTableAdapter.Insert(
                     txFioDoc.Text,
                     txGenderDoc.Text,
-                    birthdayDoc,
+                    dateTimePickerDoc.Value,
                     txPositionDoc.Text,
                     txPhoneDoc.Text,
                     Convert.ToInt32(txPriceDoc.Text),
@@ -203,7 +202,7 @@ namespace YHealthy.Forms
                 doctorsRow.full_name = txFioDoc.Text;
                 doctorsRow.gender = txGenderDoc.Text;
                 doctorsRow.birthday = dateTimePickerDoc.Value;
-                doctorsRow.phone = txPhonePat.Text;
+                doctorsRow.phone = txPhoneDoc.Text;
                 doctorsRow.position = txPositionDoc.Text;
                 doctorsRow.price = Convert.ToInt32(txPriceDoc.Text);
                 doctorsRow.cash = Convert.ToInt32(txCashDoc.Text);
