@@ -24,29 +24,24 @@ namespace YHealthy.Forms
 
         private void Record_List_Load(object sender, EventArgs e)
         {
-            UpdateDGV();
         }
 
         public void UpdateDGV()
         {
+
+
             dbrecord = recordTableAdapter.GetData();
             if (ClassTotal.idRole == 2)
             {
-                dataGridView1.DataSource = dbrecord.Where(x => x.id_doc == ClassTotal.id_doc);
+                //var filter = recordTableAdapter.GetData().Where(x => x.id_doc == 4);
+                //dataGridView1.DataSource = filter;
+                dataGridView1.DataSource = dbrecord;
             }
-            else if (ClassTotal.idRole == 3)
+            else if (ClassTotal.idRole == 1)
             {
-                dataGridView1.DataSource = dbrecord.Where(x => x.id_pat == ClassTotal.id_pat);
+                dataGridView1.DataSource = dbrecord;
             }
-            
-        }
 
-        private void buttonAddPatient_Click(object sender, EventArgs e)
-        {
-            Person p = new Person();
-            Hide();
-            p.ShowDialog();
-            Show();
         }
 
         private void buttonAddRecord_Click(object sender, EventArgs e)

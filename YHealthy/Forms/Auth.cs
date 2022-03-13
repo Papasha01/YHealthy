@@ -43,6 +43,7 @@ namespace YHealthy.Forms
             {
                 ClassTotal.idRole = filter.ElementAt(0).id_role;
                 ClassTotal.login = filter.ElementAt(0).login;
+                ClassTotal.id_doc = filter.ElementAt(0).id;
 
                 switch (ClassTotal.idRole)
                 {

@@ -48,6 +48,10 @@ namespace YHealthy.Forms
             else if (ClassTotal.creating == true)
             {
                 buttonSave.Visible = true;
+                textBoxLogin.Visible = true;
+                textBoxPas.Visible = true;
+                label17.Visible = true;
+                label16.Visible = true;
             }
 
             dateTimePickerRecord.Format = DateTimePickerFormat.Custom;
@@ -124,6 +128,10 @@ namespace YHealthy.Forms
 
             try
             {
+                usersTableAdapter.Insert(
+                    textBoxLogin.Text,
+                    textBoxPas.Text,
+                    2);
                 doctorsTableAdapter.Insert(
                     txFioDoc.Text,
                     txGenderDoc.Text,
@@ -133,10 +141,6 @@ namespace YHealthy.Forms
                     Convert.ToInt32(txPriceDoc.Text),
                     Convert.ToInt32(txCashDoc.Text),
                     textBoxLogin.Text);
-                usersTableAdapter.Insert(
-                    textBoxLogin.Text,
-                    textBoxPas.Text,
-                    2);
 
                 MessageBox.Show("Ваш профиль добавлен в систему");
             }

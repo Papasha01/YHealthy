@@ -56,7 +56,11 @@ namespace YHealthy.Forms
             this.txGenderPat = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBoxDoc = new System.Windows.Forms.GroupBox();
+            this.textBoxPas = new System.Windows.Forms.TextBox();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.txCashDoc = new System.Windows.Forms.MaskedTextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txGenderDoc = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePickerRecord = new System.Windows.Forms.DateTimePicker();
@@ -64,10 +68,6 @@ namespace YHealthy.Forms
             this.buttonSave = new System.Windows.Forms.Button();
             this.radioButtonPat = new System.Windows.Forms.RadioButton();
             this.radioButtonDoc = new System.Windows.Forms.RadioButton();
-            this.textBoxLogin = new System.Windows.Forms.TextBox();
-            this.textBoxPas = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBoxPat.SuspendLayout();
             this.groupBoxDoc.SuspendLayout();
             this.SuspendLayout();
@@ -302,7 +302,7 @@ namespace YHealthy.Forms
             this.groupBoxPat.Controls.Add(this.txInnPat);
             this.groupBoxPat.Controls.Add(this.label2);
             this.groupBoxPat.Controls.Add(this.txPassportPat);
-            this.groupBoxPat.Location = new System.Drawing.Point(444, 13);
+            this.groupBoxPat.Location = new System.Drawing.Point(12, 43);
             this.groupBoxPat.Name = "groupBoxPat";
             this.groupBoxPat.Size = new System.Drawing.Size(439, 287);
             this.groupBoxPat.TabIndex = 73;
@@ -357,12 +357,28 @@ namespace YHealthy.Forms
             this.groupBoxDoc.Controls.Add(this.dateTimePickerDoc);
             this.groupBoxDoc.Controls.Add(this.txGenderDoc);
             this.groupBoxDoc.Controls.Add(this.txPhoneDoc);
-            this.groupBoxDoc.Location = new System.Drawing.Point(12, 41);
+            this.groupBoxDoc.Location = new System.Drawing.Point(12, 43);
             this.groupBoxDoc.Name = "groupBoxDoc";
             this.groupBoxDoc.Size = new System.Drawing.Size(439, 289);
             this.groupBoxDoc.TabIndex = 74;
             this.groupBoxDoc.TabStop = false;
             this.groupBoxDoc.Text = "Доктор";
+            // 
+            // textBoxPas
+            // 
+            this.textBoxPas.Location = new System.Drawing.Point(158, 264);
+            this.textBoxPas.Name = "textBoxPas";
+            this.textBoxPas.Size = new System.Drawing.Size(243, 20);
+            this.textBoxPas.TabIndex = 73;
+            this.textBoxPas.Visible = false;
+            // 
+            // textBoxLogin
+            // 
+            this.textBoxLogin.Location = new System.Drawing.Point(158, 238);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(243, 20);
+            this.textBoxLogin.TabIndex = 73;
+            this.textBoxLogin.Visible = false;
             // 
             // txCashDoc
             // 
@@ -372,6 +388,28 @@ namespace YHealthy.Forms
             this.txCashDoc.Name = "txCashDoc";
             this.txCashDoc.Size = new System.Drawing.Size(243, 26);
             this.txCashDoc.TabIndex = 46;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label17.Location = new System.Drawing.Point(5, 262);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 20);
+            this.label17.TabIndex = 55;
+            this.label17.Text = "Пароль";
+            this.label17.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label16.Location = new System.Drawing.Point(6, 236);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 20);
+            this.label16.TabIndex = 55;
+            this.label16.Text = "Логин";
+            this.label16.Visible = false;
             // 
             // label13
             // 
@@ -420,6 +458,7 @@ namespace YHealthy.Forms
             this.buttonSave.TabIndex = 77;
             this.buttonSave.Text = "Сохранить/Обновить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Visible = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // radioButtonPat
@@ -444,40 +483,6 @@ namespace YHealthy.Forms
             this.radioButtonDoc.TabIndex = 78;
             this.radioButtonDoc.Text = "Доктор";
             this.radioButtonDoc.UseVisualStyleBackColor = true;
-            // 
-            // textBoxLogin
-            // 
-            this.textBoxLogin.Location = new System.Drawing.Point(158, 238);
-            this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(243, 20);
-            this.textBoxLogin.TabIndex = 73;
-            // 
-            // textBoxPas
-            // 
-            this.textBoxPas.Location = new System.Drawing.Point(158, 264);
-            this.textBoxPas.Name = "textBoxPas";
-            this.textBoxPas.Size = new System.Drawing.Size(243, 20);
-            this.textBoxPas.TabIndex = 73;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label16.Location = new System.Drawing.Point(6, 236);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 20);
-            this.label16.TabIndex = 55;
-            this.label16.Text = "Логин";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label17.Location = new System.Drawing.Point(5, 262);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(67, 20);
-            this.label17.TabIndex = 55;
-            this.label17.Text = "Пароль";
             // 
             // Record_info_edit
             // 
