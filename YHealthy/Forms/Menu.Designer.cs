@@ -98,6 +98,8 @@ namespace YHealthy.Forms
             this.Controls.Add(this.buttonRecList);
             this.Name = "Menu";
             this.Text = "Menu";
+            this.Load += new System.EventHandler(this.Menu_Load);
+            this.VisibleChanged += new System.EventHandler(this.Menu_VisibleChanged);
             this.ResumeLayout(false);
 
         }

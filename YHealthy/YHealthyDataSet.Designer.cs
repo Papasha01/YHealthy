@@ -34,6 +34,10 @@ namespace YHealthy {
         
         private UsersDataTable tableUsers;
         
+        private global::System.Data.DataRelation relationFK_Doctors_Users;
+        
+        private global::System.Data.DataRelation relationFK_Users_Role;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -290,6 +294,8 @@ namespace YHealthy {
                     this.tableUsers.InitVars();
                 }
             }
+            this.relationFK_Doctors_Users = this.Relations["FK_Doctors_Users"];
+            this.relationFK_Users_Role = this.Relations["FK_Users_Role"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -310,6 +316,14 @@ namespace YHealthy {
             base.Tables.Add(this.tableRole);
             this.tableUsers = new UsersDataTable();
             base.Tables.Add(this.tableUsers);
+            this.relationFK_Doctors_Users = new global::System.Data.DataRelation("FK_Doctors_Users", new global::System.Data.DataColumn[] {
+                        this.tableUsers.loginColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDoctors.loginColumn}, false);
+            this.Relations.Add(this.relationFK_Doctors_Users);
+            this.relationFK_Users_Role = new global::System.Data.DataRelation("FK_Users_Role", new global::System.Data.DataColumn[] {
+                        this.tableRole.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUsers.id_roleColumn}, false);
+            this.Relations.Add(this.relationFK_Users_Role);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +449,8 @@ namespace YHealthy {
             
             private global::System.Data.DataColumn columncash;
             
+            private global::System.Data.DataColumn columnlogin;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DoctorsDataTable() {
@@ -534,6 +550,14 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn loginColumn {
+                get {
+                    return this.columnlogin;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -569,7 +593,7 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DoctorsRow AddDoctorsRow(string full_name, string gender, System.DateTime birthday, string position, string phone, int price, int cash) {
+            public DoctorsRow AddDoctorsRow(string full_name, string gender, System.DateTime birthday, string position, string phone, int price, int cash, UsersRow parentUsersRowByFK_Doctors_Users) {
                 DoctorsRow rowDoctorsRow = ((DoctorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -579,7 +603,11 @@ namespace YHealthy {
                         position,
                         phone,
                         price,
-                        cash};
+                        cash,
+                        null};
+                if ((parentUsersRowByFK_Doctors_Users != null)) {
+                    columnValuesArray[8] = parentUsersRowByFK_Doctors_Users[1];
+                }
                 rowDoctorsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDoctorsRow);
                 return rowDoctorsRow;
@@ -617,6 +645,7 @@ namespace YHealthy {
                 this.columnphone = base.Columns["phone"];
                 this.columnprice = base.Columns["price"];
                 this.columncash = base.Columns["cash"];
+                this.columnlogin = base.Columns["login"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -638,6 +667,8 @@ namespace YHealthy {
                 base.Columns.Add(this.columnprice);
                 this.columncash = new global::System.Data.DataColumn("cash", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncash);
+                this.columnlogin = new global::System.Data.DataColumn("login", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlogin);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -656,6 +687,7 @@ namespace YHealthy {
                 this.columnphone.MaxLength = 11;
                 this.columnprice.AllowDBNull = false;
                 this.columncash.AllowDBNull = false;
+                this.columnlogin.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1169,8 +1201,6 @@ namespace YHealthy {
             
             private global::System.Data.DataColumn columndate;
             
-            private global::System.Data.DataColumn columncancel_recording;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public RecordDataTable() {
@@ -1238,14 +1268,6 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn cancel_recordingColumn {
-                get {
-                    return this.columncancel_recording;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1281,14 +1303,13 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public RecordRow AddRecordRow(int id_doc, int id_pat, System.DateTime date, bool cancel_recording) {
+            public RecordRow AddRecordRow(int id_doc, int id_pat, System.DateTime date) {
                 RecordRow rowRecordRow = ((RecordRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         id_doc,
                         id_pat,
-                        date,
-                        cancel_recording};
+                        date};
                 rowRecordRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRecordRow);
                 return rowRecordRow;
@@ -1322,7 +1343,6 @@ namespace YHealthy {
                 this.columnid_doc = base.Columns["id_doc"];
                 this.columnid_pat = base.Columns["id_pat"];
                 this.columndate = base.Columns["date"];
-                this.columncancel_recording = base.Columns["cancel_recording"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1336,8 +1356,6 @@ namespace YHealthy {
                 base.Columns.Add(this.columnid_pat);
                 this.columndate = new global::System.Data.DataColumn("date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndate);
-                this.columncancel_recording = new global::System.Data.DataColumn("cancel_recording", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncancel_recording);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -1349,7 +1367,6 @@ namespace YHealthy {
                 this.columnid_doc.AllowDBNull = false;
                 this.columnid_pat.AllowDBNull = false;
                 this.columndate.AllowDBNull = false;
-                this.columncancel_recording.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1871,13 +1888,16 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UsersRow AddUsersRow(string login, string pass, int id_role) {
+            public UsersRow AddUsersRow(string login, string pass, RoleRow parentRoleRowByFK_Users_Role) {
                 UsersRow rowUsersRow = ((UsersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         login,
                         pass,
-                        id_role};
+                        null};
+                if ((parentRoleRowByFK_Users_Role != null)) {
+                    columnValuesArray[3] = parentRoleRowByFK_Users_Role[0];
+                }
                 rowUsersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUsersRow);
                 return rowUsersRow;
@@ -2172,6 +2192,33 @@ namespace YHealthy {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string login {
+                get {
+                    try {
+                        return ((string)(this[this.tableDoctors.loginColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'login\' в таблице \'Doctors\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDoctors.loginColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public UsersRow UsersRow {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Doctors_Users"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Doctors_Users"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsbirthdayNull() {
                 return this.IsNull(this.tableDoctors.birthdayColumn);
             }
@@ -2180,6 +2227,18 @@ namespace YHealthy {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetbirthdayNull() {
                 this[this.tableDoctors.birthdayColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsloginNull() {
+                return this.IsNull(this.tableDoctors.loginColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetloginNull() {
+                this[this.tableDoctors.loginColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2343,17 +2402,6 @@ namespace YHealthy {
                     this[this.tableRecord.dateColumn] = value;
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool cancel_recording {
-                get {
-                    return ((bool)(this[this.tableRecord.cancel_recordingColumn]));
-                }
-                set {
-                    this[this.tableRecord.cancel_recordingColumn] = value;
-                }
-            }
         }
         
         /// <summary>
@@ -2389,6 +2437,17 @@ namespace YHealthy {
                 }
                 set {
                     this[this.tableRole.roleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public UsersRow[] GetUsersRows() {
+                if ((this.Table.ChildRelations["FK_Users_Role"] == null)) {
+                    return new UsersRow[0];
+                }
+                else {
+                    return ((UsersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Users_Role"])));
                 }
             }
         }
@@ -2448,6 +2507,28 @@ namespace YHealthy {
                 }
                 set {
                     this[this.tableUsers.id_roleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public RoleRow RoleRow {
+                get {
+                    return ((RoleRow)(this.GetParentRow(this.Table.ParentRelations["FK_Users_Role"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Users_Role"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public DoctorsRow[] GetDoctorsRows() {
+                if ((this.Table.ChildRelations["FK_Doctors_Users"] == null)) {
+                    return new DoctorsRow[0];
+                }
+                else {
+                    return ((DoctorsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Doctors_Users"])));
                 }
             }
         }
@@ -2755,10 +2836,11 @@ namespace YHealthy.YHealthyDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("phone", "phone");
             tableMapping.ColumnMappings.Add("price", "price");
             tableMapping.ColumnMappings.Add("cash", "cash");
+            tableMapping.ColumnMappings.Add("login", "login");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Doctors] WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Doctors] WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash) AND ((@IsNull_login = 1 AND [login] IS NULL) OR ([login] = @Original_login)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2769,10 +2851,12 @@ namespace YHealthy.YHealthyDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_login", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_login", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Doctors] ([full_name], [gender], [birthday], [position], [phone], [price], [cash]) VALUES (@full_name, @gender, @birthday, @position, @phone, @price, @cash);
-SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctors WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Doctors] ([full_name], [gender], [birthday], [position], [phone], [price], [cash], [login]) VALUES (@full_name, @gender, @birthday, @position, @phone, @price, @cash, @login);
+SELECT id, full_name, gender, birthday, position, phone, price, cash, login FROM Doctors WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2781,10 +2865,11 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@login", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Doctors] SET [full_name] = @full_name, [gender] = @gender, [birthday] = @birthday, [position] = @position, [phone] = @phone, [price] = @price, [cash] = @cash WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash));
-SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctors WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Doctors] SET [full_name] = @full_name, [gender] = @gender, [birthday] = @birthday, [position] = @position, [phone] = @phone, [price] = @price, [cash] = @cash, [login] = @login WHERE (([id] = @Original_id) AND ([full_name] = @Original_full_name) AND ([gender] = @Original_gender) AND ((@IsNull_birthday = 1 AND [birthday] IS NULL) OR ([birthday] = @Original_birthday)) AND ([position] = @Original_position) AND ([phone] = @Original_phone) AND ([price] = @Original_price) AND ([cash] = @Original_cash) AND ((@IsNull_login = 1 AND [login] IS NULL) OR ([login] = @Original_login)));
+SELECT id, full_name, gender, birthday, position, phone, price, cash, login FROM Doctors WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2793,6 +2878,7 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@login", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_full_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "full_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gender", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2802,6 +2888,8 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_phone", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cash", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cash", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_login", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_login", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "login", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2818,8 +2906,8 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, full_name, gender, birthday, position, phone, price, cash FROM dbo.Doc" +
-                "tors";
+            this._commandCollection[0].CommandText = "SELECT id, full_name, gender, birthday, position, phone, price, cash, login FROM " +
+                "dbo.Doctors";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2880,7 +2968,7 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, string Original_full_name, string Original_gender, global::System.Nullable<global::System.DateTime> Original_birthday, string Original_position, string Original_phone, int Original_price, int Original_cash) {
+        public virtual int Delete(int Original_id, string Original_full_name, string Original_gender, global::System.Nullable<global::System.DateTime> Original_birthday, string Original_position, string Original_phone, int Original_price, int Original_cash, string Original_login) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_full_name == null)) {
                 throw new global::System.ArgumentNullException("Original_full_name");
@@ -2916,6 +3004,14 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             }
             this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_price));
             this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_cash));
+            if ((Original_login == null)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_login));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2936,7 +3032,7 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string full_name, string gender, global::System.Nullable<global::System.DateTime> birthday, string position, string phone, int price, int cash) {
+        public virtual int Insert(string full_name, string gender, global::System.Nullable<global::System.DateTime> birthday, string position, string phone, int price, int cash, string login) {
             if ((full_name == null)) {
                 throw new global::System.ArgumentNullException("full_name");
             }
@@ -2969,6 +3065,12 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             }
             this.Adapter.InsertCommand.Parameters[5].Value = ((int)(price));
             this.Adapter.InsertCommand.Parameters[6].Value = ((int)(cash));
+            if ((login == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(login));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2997,6 +3099,7 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
                     string phone, 
                     int price, 
                     int cash, 
+                    string login, 
                     int Original_id, 
                     string Original_full_name, 
                     string Original_gender, 
@@ -3005,6 +3108,7 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
                     string Original_phone, 
                     int Original_price, 
                     int Original_cash, 
+                    string Original_login, 
                     int id) {
             if ((full_name == null)) {
                 throw new global::System.ArgumentNullException("full_name");
@@ -3038,42 +3142,56 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(price));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(cash));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id));
+            if ((login == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(login));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_id));
             if ((Original_full_name == null)) {
                 throw new global::System.ArgumentNullException("Original_full_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_full_name));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_full_name));
             }
             if ((Original_gender == null)) {
                 throw new global::System.ArgumentNullException("Original_gender");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_gender));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_gender));
             }
             if ((Original_birthday.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_birthday.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_birthday.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_position == null)) {
                 throw new global::System.ArgumentNullException("Original_position");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_position));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_position));
             }
             if ((Original_phone == null)) {
                 throw new global::System.ArgumentNullException("Original_phone");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_phone));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_phone));
             }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_price));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_cash));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_price));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_cash));
+            if ((Original_login == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_login));
+            }
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3094,8 +3212,25 @@ SELECT id, full_name, gender, birthday, position, phone, price, cash FROM Doctor
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string full_name, string gender, global::System.Nullable<global::System.DateTime> birthday, string position, string phone, int price, int cash, int Original_id, string Original_full_name, string Original_gender, global::System.Nullable<global::System.DateTime> Original_birthday, string Original_position, string Original_phone, int Original_price, int Original_cash) {
-            return this.Update(full_name, gender, birthday, position, phone, price, cash, Original_id, Original_full_name, Original_gender, Original_birthday, Original_position, Original_phone, Original_price, Original_cash, Original_id);
+        public virtual int Update(
+                    string full_name, 
+                    string gender, 
+                    global::System.Nullable<global::System.DateTime> birthday, 
+                    string position, 
+                    string phone, 
+                    int price, 
+                    int cash, 
+                    string login, 
+                    int Original_id, 
+                    string Original_full_name, 
+                    string Original_gender, 
+                    global::System.Nullable<global::System.DateTime> Original_birthday, 
+                    string Original_position, 
+                    string Original_phone, 
+                    int Original_price, 
+                    int Original_cash, 
+                    string Original_login) {
+            return this.Update(full_name, gender, birthday, position, phone, price, cash, login, Original_id, Original_full_name, Original_gender, Original_birthday, Original_position, Original_phone, Original_price, Original_cash, Original_login, Original_id);
         }
     }
     
@@ -3691,43 +3826,37 @@ SELECT id, full_name, gender, birthday, phone, passport_ser_num, inn, cash FROM 
             tableMapping.ColumnMappings.Add("id_doc", "id_doc");
             tableMapping.ColumnMappings.Add("id_pat", "id_pat");
             tableMapping.ColumnMappings.Add("date", "date");
-            tableMapping.ColumnMappings.Add("cancel_recording", "cancel_recording");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Record] WHERE (([id] = @Original_id) AND ([id_doc] = @Original" +
-                "_id_doc) AND ([id_pat] = @Original_id_pat) AND ([date] = @Original_date) AND ([c" +
-                "ancel_recording] = @Original_cancel_recording))";
+                "_id_doc) AND ([id_pat] = @Original_id_pat) AND ([date] = @Original_date))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_doc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_doc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_pat", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_pat", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cancel_recording", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cancel_recording", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Record] ([id_doc], [id_pat], [date], [cancel_recording]) VALUE" +
-                "S (@id_doc, @id_pat, @date, @cancel_recording);\r\nSELECT id, id_doc, id_pat, date" +
-                ", cancel_recording FROM Record WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Record] ([id_doc], [id_pat], [date]) VALUES (@id_doc, @id_pat," +
+                " @date);\r\nSELECT id, id_doc, id_pat, date FROM Record WHERE (id = SCOPE_IDENTITY" +
+                "())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_doc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_doc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_pat", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_pat", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cancel_recording", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cancel_recording", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Record] SET [id_doc] = @id_doc, [id_pat] = @id_pat, [date] = @date, [cancel_recording] = @cancel_recording WHERE (([id] = @Original_id) AND ([id_doc] = @Original_id_doc) AND ([id_pat] = @Original_id_pat) AND ([date] = @Original_date) AND ([cancel_recording] = @Original_cancel_recording));
-SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Record] SET [id_doc] = @id_doc, [id_pat] = @id_pat, [date] = @date WHERE (([id] = @Original_id) AND ([id_doc] = @Original_id_doc) AND ([id_pat] = @Original_id_pat) AND ([date] = @Original_date));
+SELECT id, id_doc, id_pat, date FROM Record WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_doc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_doc", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_pat", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_pat", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cancel_recording", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cancel_recording", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_doc", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_doc", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id_pat", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id_pat", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_cancel_recording", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cancel_recording", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3744,7 +3873,7 @@ SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, id_doc, id_pat, date, cancel_recording FROM dbo.Record";
+            this._commandCollection[0].CommandText = "SELECT id, id_doc, id_pat, date FROM dbo.Record";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3805,12 +3934,11 @@ SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date, bool Original_cancel_recording) {
+        public virtual int Delete(int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_id_doc));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_id_pat));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_date));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_cancel_recording));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3831,11 +3959,10 @@ SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int id_doc, int id_pat, System.DateTime date, bool cancel_recording) {
+        public virtual int Insert(int id_doc, int id_pat, System.DateTime date) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(id_doc));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(id_pat));
             this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(date));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(cancel_recording));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3856,17 +3983,15 @@ SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int id_doc, int id_pat, System.DateTime date, bool cancel_recording, int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date, bool Original_cancel_recording, int id) {
+        public virtual int Update(int id_doc, int id_pat, System.DateTime date, int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date, int id) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(id_doc));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(id_pat));
             this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(date));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(cancel_recording));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_id_doc));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_id_pat));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_date));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Original_cancel_recording));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id_doc));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_id_pat));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_date));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3887,8 +4012,8 @@ SELECT id, id_doc, id_pat, date, cancel_recording FROM Record WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int id_doc, int id_pat, System.DateTime date, bool cancel_recording, int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date, bool Original_cancel_recording) {
-            return this.Update(id_doc, id_pat, date, cancel_recording, Original_id, Original_id_doc, Original_id_pat, Original_date, Original_cancel_recording, Original_id);
+        public virtual int Update(int id_doc, int id_pat, System.DateTime date, int Original_id, int Original_id_doc, int Original_id_pat, System.DateTime Original_date) {
+            return this.Update(id_doc, id_pat, date, Original_id, Original_id_doc, Original_id_pat, Original_date, Original_id);
         }
     }
     
@@ -4750,6 +4875,24 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateUpdatedRows(YHealthyDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._roleTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._roleTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._doctorsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Doctors.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -4777,24 +4920,6 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._roleTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._roleTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -4805,6 +4930,22 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateInsertedRows(YHealthyDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._roleTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._roleTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._doctorsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Doctors.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -4829,22 +4970,6 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._roleTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._roleTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -4855,22 +4980,6 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(YHealthyDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._roleTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._roleTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._recordTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Record.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -4892,6 +5001,22 @@ SELECT id, login, pass, id_role FROM Users WHERE (id = @id)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._doctorsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._roleTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._roleTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

@@ -30,7 +30,15 @@ namespace YHealthy.Forms
         public void UpdateDGV()
         {
             dbrecord = recordTableAdapter.GetData();
-            dataGridView1.DataSource = dbrecord;
+            if (ClassTotal.idRole == 2)
+            {
+                dataGridView1.DataSource = dbrecord.Where(x => x.id_doc == ClassTotal.id_doc);
+            }
+            else if (ClassTotal.idRole == 3)
+            {
+                dataGridView1.DataSource = dbrecord.Where(x => x.id_pat == ClassTotal.id_pat);
+            }
+            
         }
 
         private void buttonAddPatient_Click(object sender, EventArgs e)
@@ -57,30 +65,48 @@ namespace YHealthy.Forms
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
-
+            DataRowView dtRow = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
+            recordRow = (YHealthyDataSet.RecordRow)dtRow.Row;
+            try
+            {
+            recordTableAdapter.Delete(recordRow.id, recordRow.id_doc, recordRow.id_pat, recordRow.date);
+                MessageBox.Show("Успешно!");
+                UpdateDGV();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.ToString());
+                throw;
+            }
+            
         }
 
-        private void buttonInfo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void InfoRecord()
         {
             DataRowView dtRow = (DataRowView)dataGridView1.CurrentRow.DataBoundItem;
             recordRow = (YHealthyDataSet.RecordRow)dtRow.Row;
             //MessageBox.Show(Convert.ToString(recordRow.id_doc));
 
             ClassTotal.id_doc = Convert.ToInt32(recordRow.id_doc);
-            ClassTotal.id_pac = Convert.ToInt32(recordRow.id_pat);
+            ClassTotal.id_pat = Convert.ToInt32(recordRow.id_pat);
             ClassTotal.dateRecord = recordRow.date;
 
 
-            Record_info_edit rll = new Record_info_edit();
+            Record_info_edit x = new Record_info_edit();
             Hide();
-            rll.edit = false;
-            rll.ShowDialog();
+            ClassTotal.edit = false;
+            x.ShowDialog();
             Show();
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            InfoRecord();
+        }
+
+        private void buttonInfo_Click(object sender, EventArgs e)
+        {
+            InfoRecord();
         }
     }
 }

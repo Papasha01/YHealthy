@@ -59,12 +59,6 @@
     <Compile Include="Forms\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Person.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Person.Designer.cs">
-      <DependentUpon>Person.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\RecordAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +89,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Person.resx">
-      <DependentUpon>Person.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RecordAdd.resx">
       <DependentUpon>RecordAdd.cs</DependentUpon>

@@ -29,8 +29,8 @@ namespace YHealthy.Forms
         {
             Record_info_edit x = new Record_info_edit();
             Hide();
-            x.creating = true;
-            x.doc = true;
+            ClassTotal.creating = true;
+            ClassTotal.selectDoc = true;
             x.ShowDialog();
             Show();
         }
@@ -39,30 +39,60 @@ namespace YHealthy.Forms
         {
             Record_info_edit x = new Record_info_edit();
             Hide();
-            x.creating = true;
-            x.pat = true;
+            ClassTotal.creating = true;
+            ClassTotal.selectPat = true;
             x.ShowDialog();
             Show();
         }
 
         private void buttonEditDoc_Click(object sender, EventArgs e)
         {
-            Record_info_edit x = new Record_info_edit();
+            //Record_info_edit x = new Record_info_edit();
+            //Hide();
+            //x.edit = true;
+            //x.doc = true;
+            //x.ShowDialog();
+            //Show();
+            RecordAdd x = new RecordAdd();
             Hide();
-            x.edit = true;
-            x.doc = true;
+            ClassTotal.edit = true;
+            ClassTotal.selectDoc = true;
             x.ShowDialog();
             Show();
         }
 
         private void buttonEditPat_Click(object sender, EventArgs e)
         {
-            Record_info_edit x = new Record_info_edit();
+            RecordAdd x = new RecordAdd();
             Hide();
-            x.edit = true;
-            x.pat = true;
+            ClassTotal.edit = true;
+            ClassTotal.selectPat = true;
             x.ShowDialog();
             Show();
+        }
+
+        private void Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            ClassTotal.edit = false;
+            ClassTotal.creating = false;
+            ClassTotal.selectDoc = false;
+            ClassTotal.selectPat = false;
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            if (ClassTotal.idRole == 3)
+            {
+                buttonAddDoc.Visible = false;
+                buttonEditDoc.Visible = false;
+                buttonAddPat.Visible = false;
+                buttonEditPat.Visible = false;
+            }
+            else if (ClassTotal.idRole == 2)
+            {
+                buttonAddDoc.Visible = false;
+                buttonEditDoc.Visible = false;
+            }
         }
     }
 }

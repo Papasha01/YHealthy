@@ -17,66 +17,102 @@ namespace YHealthy.Forms
             InitializeComponent();
         }
 
-        YHealthyDataSetTableAdapters.DoctorsTableAdapter DoctorsTableAdapter = new YHealthyDataSetTableAdapters.DoctorsTableAdapter();
+        YHealthyDataSetTableAdapters.DoctorsTableAdapter doctorsTableAdapter = new YHealthyDataSetTableAdapters.DoctorsTableAdapter();
         YHealthyDataSet.DoctorsDataTable dbDoc;
-        YHealthyDataSetTableAdapters.PatientTableAdapter PatientTableAdapter = new YHealthyDataSetTableAdapters.PatientTableAdapter();
+        YHealthyDataSetTableAdapters.PatientTableAdapter patientTableAdapter = new YHealthyDataSetTableAdapters.PatientTableAdapter();
         YHealthyDataSet.PatientDataTable dbPac;
+        YHealthyDataSetTableAdapters.UsersTableAdapter usersTableAdapter = new YHealthyDataSetTableAdapters.UsersTableAdapter();
+        YHealthyDataSet.UsersDataTable dbUser;
 
         YHealthyDataSet.DoctorsRow doctorsRow;
         YHealthyDataSet.PatientRow patientRow;
 
-        public bool edit = false, doc = false, pat = false, creating = false;
-
         private void Record_info_edit_Load(object sender, EventArgs e)
         {
-            if (edit == true)
+            if (ClassTotal.edit == true)
             {
                 buttonSave.Visible = true;
                 radioButtonPat.Visible = false;
                 radioButtonDoc.Visible = false;
-                if (doc == true)
+                if (ClassTotal.selectDoc == true)
                 {
                     groupBoxDoc.Visible = true;
                     groupBoxPat.Visible = false;
                 }
-                else if (pat == true)
+                else if (ClassTotal.selectPat == true)
                 {
                     groupBoxDoc.Visible = false;
                     groupBoxPat.Visible = true;
                 }
             }
-            else
-                buttonSave.Visible = false;
-
+            else if (ClassTotal.creating == true)
+            {
+                buttonSave.Visible = true;
+            }
 
             dateTimePickerRecord.Format = DateTimePickerFormat.Custom;
             dateTimePickerRecord.CustomFormat = "MM/dd/yyyy hh:mm:ss";
-
-            UploadInfo();
+            if (ClassTotal.creating == false)
+            {
+                if (ClassTotal.edit != true)
+                {
+                    UploadInfoDoc();
+                    UploadInfoPat();
+                }
+                else if (ClassTotal.selectDoc == true)
+                {
+                    UploadInfoDoc();
+                }
+                else if (ClassTotal.selectPat == true)
+                {
+                    UploadInfoPat();
+                }
+            }
+            else
+            {
+                if (ClassTotal.selectDoc == true)
+                {
+                    radioButtonDoc.Visible = false;
+                    radioButtonPat.Visible = false;
+                    label3.Visible = false;
+                    dateTimePickerRecord.Visible = false;
+                    groupBoxPat.Visible = false;
+                    groupBoxDoc.Visible = true;
+                }
+                else if (ClassTotal.selectPat == true)
+                {
+                    radioButtonDoc.Visible = false;
+                    radioButtonPat.Visible = false;
+                    label3.Visible = false;
+                    dateTimePickerRecord.Visible = false;
+                    groupBoxPat.Visible = true;
+                    groupBoxDoc.Visible = false;
+                }
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (creating == true)
+            if (ClassTotal.creating == true)
             {
-                if (doc == true)
-                {
-                    CreatePat();
-                }
-                else if (pat == true)
+                if (ClassTotal.selectDoc == true)
                 {
                     CreateDoc();
                 }
-            }
-            else if (edit == true)
-            {
-                if (doc == true)
+                else if (ClassTotal.selectPat == true)
                 {
-                    EditPat();
+                    CreatePat();
                 }
-                else if (pat == true)
+            }
+            else if (ClassTotal.edit == true)
+            {
+                if (ClassTotal.selectDoc == true)
                 {
                     EditDoc();
+                }
+                else if (ClassTotal.selectPat == true)
+                {
+                    EditPat();
                 }
             }
             
@@ -88,13 +124,19 @@ namespace YHealthy.Forms
 
             try
             {
-                DoctorsTableAdapter.Insert(txFioDoc.Text, 
-                    txGenderDoc.Text, 
-                    birthdayDoc, 
-                    txPositionDoc.Text, 
-                    txPhoneDoc.Text, 
-                    Convert.ToInt32(txPriceDoc.Text), 
-                    Convert.ToInt32(txCashDoc.Text)); 
+                doctorsTableAdapter.Insert(
+                    txFioDoc.Text,
+                    txGenderDoc.Text,
+                    birthdayDoc,
+                    txPositionDoc.Text,
+                    txPhoneDoc.Text,
+                    Convert.ToInt32(txPriceDoc.Text),
+                    Convert.ToInt32(txCashDoc.Text),
+                    textBoxLogin.Text);
+                usersTableAdapter.Insert(
+                    textBoxLogin.Text,
+                    textBoxPas.Text,
+                    2);
 
                 MessageBox.Show("Ваш профиль добавлен в систему");
             }
@@ -110,7 +152,7 @@ namespace YHealthy.Forms
 
             try
             {
-                PatientTableAdapter.Insert(
+                patientTableAdapter.Insert(
                     txFioPat.Text,
                     txGenderPat.Text,
                     birthdayPat, 
@@ -129,7 +171,25 @@ namespace YHealthy.Forms
 
         private void EditPat()
         {
+            DateTime birthdayPat = dateTimePickerPat.Value;
 
+            try
+            {
+                patientRow.full_name = txFioPat.Text;
+                patientRow.gender = txGenderPat.Text;
+                patientRow.birthday = birthdayPat;
+                patientRow.phone = txPhonePat.Text;
+                patientRow.passport_ser_num = txPassportPat.Text;
+                patientRow.inn = txInnPat.Text;
+                patientRow.cash = Convert.ToInt32(txCashPat.Text);
+
+                patientTableAdapter.Update(patientRow);
+                MessageBox.Show("Ваш профиль добавлен в систему");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка при обновлении профиля \n" + e);
+            }
         }
 
         private void EditDoc()
@@ -137,28 +197,33 @@ namespace YHealthy.Forms
 
         }
 
-        private void UploadInfo()
+        private void UploadInfoDoc()
         {
-            dbDoc = DoctorsTableAdapter.GetData();
-            dbPac = PatientTableAdapter.GetData();
-
+            dbDoc = doctorsTableAdapter.GetData();
             doctorsRow = dbDoc.FindByid(ClassTotal.id_doc);
             txFioDoc.Text = doctorsRow.full_name.ToString();
             txPhoneDoc.Text = doctorsRow.phone.ToString();
             txPositionDoc.Text = doctorsRow.position.ToString();
             txPriceDoc.Text = doctorsRow.price.ToString();
             txGenderDoc.Text = doctorsRow.gender.ToString();
-            dateTimePickerDoc.Value = doctorsRow.birthday;
+            txCashDoc.Text = doctorsRow.cash.ToString();
+            if (ClassTotal.edit == false)
+                dateTimePickerDoc.Value = doctorsRow.birthday;
+        }
 
-            patientRow = dbPac.FindByid(ClassTotal.id_pac);
-            txFioPat.Text = patientRow.full_name.ToString();
-            txPhonePat.Text = patientRow.phone.ToString();
-            txInnPat.Text = patientRow.inn.ToString();
-            txPassportPat.Text = patientRow.passport_ser_num.ToString();
-            txGenderPat.Text = patientRow.gender.ToString();
-            dateTimePickerPat.Value = patientRow.birthday;
-
-            dateTimePickerRecord.Value = ClassTotal.dateRecord;
+        private void UploadInfoPat()
+        {
+                dbPac = patientTableAdapter.GetData();
+                patientRow = dbPac.FindByid(ClassTotal.id_pat);
+                txFioPat.Text = patientRow.full_name.ToString();
+                txPhonePat.Text = patientRow.phone.ToString();
+                txInnPat.Text = patientRow.inn.ToString();
+                txPassportPat.Text = patientRow.passport_ser_num.ToString();
+                txGenderPat.Text = patientRow.gender.ToString();
+                dateTimePickerPat.Value = patientRow.birthday;
+                txCashPat.Text = patientRow.cash.ToString();
+            if (ClassTotal.edit == false)
+                dateTimePickerRecord.Value = ClassTotal.dateRecord;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

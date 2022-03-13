@@ -52,18 +52,22 @@ namespace YHealthy.Forms
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBoxPat = new System.Windows.Forms.GroupBox();
+            this.txCashPat = new System.Windows.Forms.MaskedTextBox();
             this.txGenderPat = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBoxDoc = new System.Windows.Forms.GroupBox();
+            this.txCashDoc = new System.Windows.Forms.MaskedTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txGenderDoc = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePickerRecord = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.radioButtonPat = new System.Windows.Forms.RadioButton();
             this.radioButtonDoc = new System.Windows.Forms.RadioButton();
-            this.txCashPat = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txCashDoc = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxLogin = new System.Windows.Forms.TextBox();
+            this.textBoxPas = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBoxPat.SuspendLayout();
             this.groupBoxDoc.SuspendLayout();
             this.SuspendLayout();
@@ -298,12 +302,21 @@ namespace YHealthy.Forms
             this.groupBoxPat.Controls.Add(this.txInnPat);
             this.groupBoxPat.Controls.Add(this.label2);
             this.groupBoxPat.Controls.Add(this.txPassportPat);
-            this.groupBoxPat.Location = new System.Drawing.Point(12, 43);
+            this.groupBoxPat.Location = new System.Drawing.Point(444, 13);
             this.groupBoxPat.Name = "groupBoxPat";
-            this.groupBoxPat.Size = new System.Drawing.Size(439, 253);
+            this.groupBoxPat.Size = new System.Drawing.Size(439, 287);
             this.groupBoxPat.TabIndex = 73;
             this.groupBoxPat.TabStop = false;
             this.groupBoxPat.Text = "Пациент";
+            // 
+            // txCashPat
+            // 
+            this.txCashPat.BackColor = System.Drawing.SystemColors.Window;
+            this.txCashPat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txCashPat.Location = new System.Drawing.Point(158, 205);
+            this.txCashPat.Name = "txCashPat";
+            this.txCashPat.Size = new System.Drawing.Size(243, 26);
+            this.txCashPat.TabIndex = 46;
             // 
             // txGenderPat
             // 
@@ -314,8 +327,20 @@ namespace YHealthy.Forms
             this.txGenderPat.Size = new System.Drawing.Size(243, 26);
             this.txGenderPat.TabIndex = 44;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label8.Location = new System.Drawing.Point(6, 208);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 20);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Баланс";
+            // 
             // groupBoxDoc
             // 
+            this.groupBoxDoc.Controls.Add(this.textBoxPas);
+            this.groupBoxDoc.Controls.Add(this.textBoxLogin);
             this.groupBoxDoc.Controls.Add(this.label15);
             this.groupBoxDoc.Controls.Add(this.txCashDoc);
             this.groupBoxDoc.Controls.Add(this.txPriceDoc);
@@ -325,6 +350,8 @@ namespace YHealthy.Forms
             this.groupBoxDoc.Controls.Add(this.txPositionDoc);
             this.groupBoxDoc.Controls.Add(this.label6);
             this.groupBoxDoc.Controls.Add(this.label5);
+            this.groupBoxDoc.Controls.Add(this.label17);
+            this.groupBoxDoc.Controls.Add(this.label16);
             this.groupBoxDoc.Controls.Add(this.label13);
             this.groupBoxDoc.Controls.Add(this.txFioDoc);
             this.groupBoxDoc.Controls.Add(this.dateTimePickerDoc);
@@ -332,10 +359,29 @@ namespace YHealthy.Forms
             this.groupBoxDoc.Controls.Add(this.txPhoneDoc);
             this.groupBoxDoc.Location = new System.Drawing.Point(12, 41);
             this.groupBoxDoc.Name = "groupBoxDoc";
-            this.groupBoxDoc.Size = new System.Drawing.Size(439, 255);
+            this.groupBoxDoc.Size = new System.Drawing.Size(439, 289);
             this.groupBoxDoc.TabIndex = 74;
             this.groupBoxDoc.TabStop = false;
             this.groupBoxDoc.Text = "Доктор";
+            // 
+            // txCashDoc
+            // 
+            this.txCashDoc.BackColor = System.Drawing.SystemColors.Window;
+            this.txCashDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txCashDoc.Location = new System.Drawing.Point(158, 205);
+            this.txCashDoc.Name = "txCashDoc";
+            this.txCashDoc.Size = new System.Drawing.Size(243, 26);
+            this.txCashDoc.TabIndex = 46;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label13.Location = new System.Drawing.Point(6, 208);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 20);
+            this.label13.TabIndex = 55;
+            this.label13.Text = "Баланс";
             // 
             // txGenderDoc
             // 
@@ -374,7 +420,6 @@ namespace YHealthy.Forms
             this.buttonSave.TabIndex = 77;
             this.buttonSave.Text = "Сохранить/Обновить";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Visible = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // radioButtonPat
@@ -400,43 +445,39 @@ namespace YHealthy.Forms
             this.radioButtonDoc.Text = "Доктор";
             this.radioButtonDoc.UseVisualStyleBackColor = true;
             // 
-            // txCashPat
+            // textBoxLogin
             // 
-            this.txCashPat.BackColor = System.Drawing.SystemColors.Window;
-            this.txCashPat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txCashPat.Location = new System.Drawing.Point(158, 205);
-            this.txCashPat.Name = "txCashPat";
-            this.txCashPat.Size = new System.Drawing.Size(243, 26);
-            this.txCashPat.TabIndex = 46;
+            this.textBoxLogin.Location = new System.Drawing.Point(158, 238);
+            this.textBoxLogin.Name = "textBoxLogin";
+            this.textBoxLogin.Size = new System.Drawing.Size(243, 20);
+            this.textBoxLogin.TabIndex = 73;
             // 
-            // label8
+            // textBoxPas
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(6, 208);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 20);
-            this.label8.TabIndex = 55;
-            this.label8.Text = "Баланс";
+            this.textBoxPas.Location = new System.Drawing.Point(158, 264);
+            this.textBoxPas.Name = "textBoxPas";
+            this.textBoxPas.Size = new System.Drawing.Size(243, 20);
+            this.textBoxPas.TabIndex = 73;
             // 
-            // label13
+            // label16
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label13.Location = new System.Drawing.Point(6, 208);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 20);
-            this.label13.TabIndex = 55;
-            this.label13.Text = "Баланс";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label16.Location = new System.Drawing.Point(6, 236);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 20);
+            this.label16.TabIndex = 55;
+            this.label16.Text = "Логин";
             // 
-            // txCashDoc
+            // label17
             // 
-            this.txCashDoc.BackColor = System.Drawing.SystemColors.Window;
-            this.txCashDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txCashDoc.Location = new System.Drawing.Point(158, 205);
-            this.txCashDoc.Name = "txCashDoc";
-            this.txCashDoc.Size = new System.Drawing.Size(243, 26);
-            this.txCashDoc.TabIndex = 46;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label17.Location = new System.Drawing.Point(5, 262);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 20);
+            this.label17.TabIndex = 55;
+            this.label17.Text = "Пароль";
             // 
             // Record_info_edit
             // 
@@ -498,5 +539,9 @@ namespace YHealthy.Forms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox txCashDoc;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBoxPas;
+        private System.Windows.Forms.TextBox textBoxLogin;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
