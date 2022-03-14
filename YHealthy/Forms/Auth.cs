@@ -32,8 +32,8 @@ namespace YHealthy.Forms
         private void SinglIn()
         {
             string log, pas;
-            pas = TBPassword.Text;
-            log = TBEmail.Text;
+            pas = txPas.Text;
+            log = txLog.Text;
 
             dbuser = usersTableAdapter.GetData();
             dbrecord = recordTableAdapter.GetData();
@@ -71,8 +71,8 @@ namespace YHealthy.Forms
             else
             {
                 MessageBox.Show("Логин или пароль неверный");
-                TBEmail.Clear();
-                TBPassword.Clear();
+                txLog.Clear();
+                txPas.Clear();
             }
         }
 
@@ -82,6 +82,14 @@ namespace YHealthy.Forms
             {
                 SinglIn();
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                this.txPas.PasswordChar = '\0';
+            else
+                this.txPas.PasswordChar = '*';
         }
     }
 }
